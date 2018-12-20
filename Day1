@@ -1,0 +1,33 @@
+# this is for the advent calendar challenge 2018
+# day 1, part 1
+import itertools
+
+# need to access read the lines in the txt file 'input.txt'
+file_name = 'input.txt'
+# need to get the lines of data
+lines = [int(data) for data in open(file_name).readlines()]
+
+# need to have the lines sum up for the frequency
+
+frequency = sum(lines)
+print(str(frequency) + " this is for the first part.")
+
+# for part 2 I can use the same file_name and lines
+# but i need to figure out which number it hits twice first
+# so i can keep a list of numbers that it has been and check to see if the number that the current sum is, is already
+# in that list
+example = [-6, +3, +8, +5, -5]
+curr_sum = 0
+list_of_sums = {0}
+
+for data in itertools.cycle(lines):
+    # this should be adding the current number to the current sum
+    curr_sum += int(data)
+
+    # checking to see if the current sum is one that already has been
+    if curr_sum in list_of_sums:
+        print(curr_sum)
+        break
+    else:
+        # if it's not in the list, then add the current sum to the list
+        list_of_sums.add(curr_sum)
